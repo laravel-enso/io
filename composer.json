@@ -1,0 +1,29 @@
+{
+    "name": "laravel-enso/io",
+    "description": "IO process monitoring dependency for Laravel-Enso",
+    "keywords": [
+        "laravel",
+        "laravel-enso",
+        "io"
+    ],
+    "homepage": "https://github.com/laravel-enso/io",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "laravel-enso/core": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelEnso\\IO\\": "src/"
+        }
+    }
+}
