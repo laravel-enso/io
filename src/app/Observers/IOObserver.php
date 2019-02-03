@@ -4,10 +4,16 @@ namespace LaravelEnso\IO\app\Observers;
 
 use LaravelEnso\IO\app\Enums\IOEvents;
 use LaravelEnso\IO\app\Events\IOEvent;
+use LaravelEnso\IO\app\Enums\IOStatuses;
 use LaravelEnso\IO\app\Contracts\IOOperation;
 
 class IOObserver
 {
+    public function creating(IOOperation $operation)
+    {
+        $operation->status = IOStatuses::Waiting;
+    }
+
     public function created(IOOperation $operation)
     {
         $this->event($operation);
