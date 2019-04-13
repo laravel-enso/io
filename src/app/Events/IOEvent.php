@@ -35,7 +35,7 @@ class IOEvent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'operation' => (new IO($this->operation))->resolve()
+            'operation' => (new IO($this->operation))->resolve(),
         ];
     }
 
