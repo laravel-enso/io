@@ -26,12 +26,17 @@ class IOEvent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new PrivateChannel('operations.'.$this->operation->created_by);
+        return $this->operation->createdBy->isAdmin()
+            || $this->operation->createdBy->isSupervisor()
+            ? new PrivateChannel('operations')
+            : [new PrivateChannel('operations'), new PrivateChannel('operations.'.$this->operation->created_by)];
     }
 
     public function broadcastWith()
     {
-        return ['operation' => (new IO($this->operation))->resolve()];
+        return [
+            'operation' => (new IO($this->operation))->resolve()
+        ];
     }
 
     public function broadcastAs()

@@ -25,5 +25,13 @@
         "psr-4": {
             "LaravelEnso\\IO\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\IO\\BroadcastServiceProvider"
+            ],
+            "aliases": {}
+        }
     }
 }
