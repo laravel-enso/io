@@ -29,7 +29,7 @@ class IOEvent implements ShouldBroadcast
         if (is_null($this->operation->createdBy)) {
             return new PrivateChannel('operations');
         }
-        
+
         return $this->operation->createdBy->isAdmin()
             || $this->operation->createdBy->isSupervisor()
             ? new PrivateChannel('operations')
