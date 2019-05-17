@@ -26,7 +26,7 @@ class IOEvent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        if (is_null($this->operation->createdBy)) {
+        if ($this->operation->createdBy === null) {
             return new PrivateChannel('operations');
         }
 
