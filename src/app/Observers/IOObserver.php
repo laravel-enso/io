@@ -29,7 +29,7 @@ class IOObserver
     {
         if (IOEvents::has($operation->status())) {
             Event::dispatch(new IOEvent(
-                $operation, IOEvents::get($operation->status())
+                $operation->load('createdBy.avatar'), IOEvents::get($operation->status())
             ));
         }
     }
