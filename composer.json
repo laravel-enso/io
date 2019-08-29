@@ -19,7 +19,8 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/core": "4.3.*"
+        "laravel-enso/core": "4.3.*",
+        "laravel-enso/enums": "1.0.*"
     },
     "autoload": {
         "psr-4": {
@@ -29,7 +30,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\IO\\BroadcastServiceProvider"
+                "LaravelEnso\\IO\\BroadcastServiceProvider",
+                "LaravelEnso\\IO\\EnumServiceProvider"
             ],
             "aliases": {}
         }
