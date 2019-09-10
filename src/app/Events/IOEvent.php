@@ -35,7 +35,7 @@ class IOEvent implements ShouldBroadcast
             ? new PrivateChannel('operations')
             : [
                 new PrivateChannel('operations'),
-                new PrivateChannel('operations.'.$this->operation->created_by)
+                new PrivateChannel('operations.'.$this->operation->created_by),
             ];
     }
 
