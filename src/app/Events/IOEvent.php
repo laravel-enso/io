@@ -33,7 +33,10 @@ class IOEvent implements ShouldBroadcast
         return $this->operation->createdBy->isAdmin()
             || $this->operation->createdBy->isSupervisor()
             ? new PrivateChannel('operations')
-            : [new PrivateChannel('operations'), new PrivateChannel('operations.'.$this->operation->created_by)];
+            : [
+                new PrivateChannel('operations'),
+                new PrivateChannel('operations.'.$this->operation->created_by)
+            ];
     }
 
     public function broadcastWith()
