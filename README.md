@@ -14,19 +14,7 @@ The front end assets that utilize this api are present in the [ui](https://githu
 
 For live examples and demos, you may visit [laravel-enso.com](https://www.laravel-enso.com).
 
-## Installation
-
-Comes pre-installed in Enso.
-
-## Features
-
-- provides a series of classes useful when working with long running IO operations
-- includes the reusable `IOEvent` broadcastable event class
-- is already used in the Data Import and Data Export packages
-- comes with Enums for the events, statuses and types
-- provides an observer that can be used on models that perform IO operations
-
-## Configuration & Usage
+### Installation, Configuration & Usage
 
 Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/io.html)
 
