@@ -2,13 +2,13 @@
 
 namespace LaravelEnso\IO\app\Events;
 
-use Illuminate\Queue\SerializesModels;
-use LaravelEnso\IO\app\Http\Resources\IO;
-use Illuminate\Broadcasting\PrivateChannel;
-use LaravelEnso\IO\app\Contracts\IOOperation;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use LaravelEnso\IO\app\Contracts\IOOperation;
+use LaravelEnso\IO\app\Http\Resources\IO;
 
 class IOEvent implements ShouldBroadcast
 {

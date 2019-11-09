@@ -3,10 +3,10 @@
 namespace LaravelEnso\IO\app\Observers;
 
 use Illuminate\Support\Facades\Event;
-use LaravelEnso\IO\app\Enums\IOEvents;
-use LaravelEnso\IO\app\Events\IOEvent;
-use LaravelEnso\IO\app\Enums\IOStatuses;
 use LaravelEnso\IO\app\Contracts\IOOperation;
+use LaravelEnso\IO\app\Enums\IOEvents;
+use LaravelEnso\IO\app\Enums\IOStatuses;
+use LaravelEnso\IO\app\Events\IOEvent;
 
 class IOObserver
 {

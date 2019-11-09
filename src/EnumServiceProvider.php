@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\IO;
 
-use LaravelEnso\IO\app\Enums\IOStatuses;
 use LaravelEnso\Enums\EnumServiceProvider as ServiceProvider;
+use LaravelEnso\IO\app\Enums\IOStatuses;
 
 class EnumServiceProvider extends ServiceProvider
 {
