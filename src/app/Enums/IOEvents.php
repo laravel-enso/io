@@ -6,9 +6,9 @@ use LaravelEnso\Enums\app\Services\Enum;
 
 class IOEvents extends Enum
 {
-    const Started = 10;
-    const Updated = 20;
-    const Stopped = 30;
+    public const Started = 10;
+    public const Updated = 20;
+    public const Stopped = 30;
 
     protected static $data = [
         self::Started => 'io-started',
