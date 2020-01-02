@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\IO\app\Traits;
+namespace LaravelEnso\IO\App\Traits;
 
-use LaravelEnso\IO\app\Enums\IOStatuses;
+use LaravelEnso\IO\App\Enums\IOStatuses;
 
 trait HasIOStatuses
 {

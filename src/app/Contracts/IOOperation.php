@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\IO\app\Contracts;
+namespace LaravelEnso\IO\App\Contracts;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 

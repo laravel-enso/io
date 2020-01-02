@@ -1,23 +1,23 @@
 <?php
 
-namespace LaravelEnso\IO\app\Events;
+namespace LaravelEnso\IO\App\Events;
 
-use Illuminate\Queue\SerializesModels;
-use LaravelEnso\IO\app\Http\Resources\IO;
-use Illuminate\Broadcasting\PrivateChannel;
-use LaravelEnso\IO\app\Contracts\IOOperation;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use LaravelEnso\IO\App\Contracts\IOOperation;
+use LaravelEnso\IO\App\Http\Resources\IO;
 
 class IOEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $operation;
-    private $name;
+    private IOOperation $operation;
+    private string $name;
 
-    public function __construct(IOOperation $operation, $name)
+    public function __construct(IOOperation $operation, string $name)
     {
         $this->operation = $operation;
         $this->name = $name;
@@ -26,28 +26,27 @@ class IOEvent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        if ($this->operation->createdBy === null) {
-            return new PrivateChannel('operations');
-        }
-
-        return $this->operation->createdBy->isAdmin()
-            || $this->operation->createdBy->isSupervisor()
-            ? new PrivateChannel('operations')
-            : [
+        return $this->shouldIncludeCreator()
+            ? [
                 new PrivateChannel('operations'),
-                new PrivateChannel('operations.'.$this->operation->created_by),
-            ];
+                new PrivateChannel("operations.{$this->operation->created_by}"),
+            ] : new PrivateChannel('operations');
     }
 
     public function broadcastWith()
     {
-        return [
-            'operation' => (new IO($this->operation))->resolve(),
-        ];
+        return ['operation' => (new IO($this->operation))->resolve()];
     }
 
     public function broadcastAs()
     {
         return $this->name;
+    }
+
+    private function shouldIncludeCreator()
+    {
+        return $this->operation->createdBy
+            && ! $this->operation->createdBy->isAdmin()
+            && ! $this->operation->createdBy->isSupervisor();
     }
 }

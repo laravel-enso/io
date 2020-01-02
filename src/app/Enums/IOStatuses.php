@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelEnso\IO\app\Enums;
+namespace LaravelEnso\IO\App\Enums;
 
-use LaravelEnso\Enums\app\Services\Enum;
+use LaravelEnso\Enums\App\Services\Enum;
 
 class IOStatuses extends Enum
 {
-    const Waiting = IOEvents::Started;
-    const Processing = IOEvents::Updated;
-    const Finalized = IOEvents::Stopped;
+    public const Waiting = IOEvents::Started;
+    public const Processing = IOEvents::Updated;
+    public const Finalized = IOEvents::Stopped;
 }

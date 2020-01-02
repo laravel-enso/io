@@ -1,16 +1,16 @@
 <?php
 
-namespace LaravelEnso\IO\app\Enums;
+namespace LaravelEnso\IO\App\Enums;
 
-use LaravelEnso\Enums\app\Services\Enum;
+use LaravelEnso\Enums\App\Services\Enum;
 
 class IOEvents extends Enum
 {
-    const Started = 10;
-    const Updated = 20;
-    const Stopped = 30;
+    public const Started = 10;
+    public const Updated = 20;
+    public const Stopped = 30;
 
-    protected static $data = [
+    protected static array $data = [
         self::Started => 'io-started',
         self::Updated => 'io-updated',
         self::Stopped => 'io-stopped',
