@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 
 interface IOOperation
 {
-    public function createdBy() : Relation;
+    public function createdBy(): Relation;
 
     public function name();
 
