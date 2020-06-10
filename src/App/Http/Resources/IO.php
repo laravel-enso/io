@@ -3,7 +3,7 @@
 namespace LaravelEnso\IO\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelEnso\TrackWho\App\Http\Resources\TrackWho;
+use LaravelEnso\Core\App\Http\Resources\User;
 
 class IO extends JsonResource
 {
@@ -16,7 +16,7 @@ class IO extends JsonResource
             'type' => $this->type(),
             'since' => $this->created_at,
             'status' => $this->status(),
-            'owner' => new TrackWho($this->createdBy),
+            'owner' => new User($this->createdBy),
         ];
     }
 }
