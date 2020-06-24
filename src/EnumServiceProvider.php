@@ -3,7 +3,7 @@
 namespace LaravelEnso\IO;
 
 use LaravelEnso\Enums\EnumServiceProvider as ServiceProvider;
-use LaravelEnso\IO\App\Enums\IOStatuses;
+use LaravelEnso\IO\Enums\IOStatuses;
 
 class EnumServiceProvider extends ServiceProvider
 {

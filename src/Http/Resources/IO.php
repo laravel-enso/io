@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\IO\App\Http\Resources;
+namespace LaravelEnso\IO\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelEnso\TrackWho\App\Http\Resources\TrackWho;
+use LaravelEnso\TrackWho\Http\Resources\TrackWho;
 
 class IO extends JsonResource
 {
