@@ -35,7 +35,7 @@ class IOEvent implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return ['operation' => (new IO($this->operation))->resolve()];
+        return ['operation' => (new IO($this->operation->load('createdBy.avatar')))->resolve()];
     }
 
     public function broadcastAs()
