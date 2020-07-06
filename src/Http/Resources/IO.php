@@ -16,7 +16,7 @@ class IO extends JsonResource
             'type' => $this->type(),
             'since' => $this->created_at,
             'status' => $this->status(),
-            'owner' => new User($this->createdBy),
+            'owner' => new User($this->createdBy->load('avatar')),
         ];
     }
 }
