@@ -12,7 +12,9 @@ use LaravelEnso\IO\Http\Resources\IO;
 
 class IOEvent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels {
+        __unserialize as unserialize;
+    }
 
     private IOOperation $operation;
     private string $name;
@@ -48,5 +50,12 @@ class IOEvent implements ShouldBroadcast
         return $this->operation->createdBy
             && ! $this->operation->createdBy->isAdmin()
             && ! $this->operation->createdBy->isSupervisor();
+    }
+
+    public function __unserialize($values)
+    {
+        $this->unserialize($values);
+
+        $this->operation->load('createdBy.avatar');
     }
 }
