@@ -11,7 +11,7 @@ class BroadcastServiceProvider extends ServiceProvider
     {
         Broadcast::channel(
             'operations.{userId}',
-            fn ($user, $operationId) => (int) $user->id === (int) $operationId
+            fn ($user, $userId) => (int) $user->id === (int) $userId
         );
 
         Broadcast::channel('operations', fn ($user) => $user->isAdmin() || $user->isSupervisor());
