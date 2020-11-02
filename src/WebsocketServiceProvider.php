@@ -17,7 +17,7 @@ class WebsocketServiceProvider extends CoreServiceProvider
         Websockets::register([
             'io' => fn (User $user) => in_array($user->role_id, [$roles::Admin, $roles::Supervisor])
                 ? 'operations'
-                : 'operations.'.$user->id
+                : 'operations.'.$user->id,
         ]);
     }
 }
