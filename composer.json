@@ -28,6 +28,7 @@
         "laravel": {
             "providers": [
                 "LaravelEnso\\IO\\BroadcastServiceProvider",
+                "LaravelEnso\\IO\\WebsocketServiceProvider",
                 "LaravelEnso\\IO\\EnumServiceProvider"
             ],
             "aliases": {}
