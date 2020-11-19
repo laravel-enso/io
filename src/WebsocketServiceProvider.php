@@ -13,9 +13,10 @@ class WebsocketServiceProvider extends CoreServiceProvider
     public function boot()
     {
         $roles = App::make(Roles::class);
+        $isSuperior = in_array($user->role_id, [$roles::Admin, $roles::Supervisor]);
 
         Websockets::register([
-            'io' => fn (User $user) => in_array($user->role_id, [$roles::Admin, $roles::Supervisor])
+            'io' => fn (User $user) => $isSuperior
                 ? 'operations'
                 : 'operations.'.$user->id,
         ]);
