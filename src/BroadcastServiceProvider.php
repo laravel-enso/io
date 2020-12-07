@@ -9,11 +9,10 @@ class BroadcastServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Broadcast::channel(
-            'operations.{userId}',
-            fn ($user, $userId) => (int) $user->id === (int) $userId
-        );
+        $himself = fn ($user, $userId) => (int) $user->id === (int) $userId;
+        Broadcast::channel('operations.{userId}', $himself);
 
-        Broadcast::channel('operations', fn ($user) => $user->isAdmin() || $user->isSupervisor());
+        $superiorRole = fn ($user) => $user->isAdmin() || $user->isSupervisor();
+        Broadcast::channel('operations', $superiorRole);
     }
 }

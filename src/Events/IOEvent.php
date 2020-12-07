@@ -2,60 +2,54 @@
 
 namespace LaravelEnso\IO\Events;
 
-use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Queue\SerializesModels;
-use LaravelEnso\IO\Contracts\IOOperation;
+use LaravelEnso\IO\Enums\IOTypes;
 use LaravelEnso\IO\Http\Resources\IO;
 
 class IOEvent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels {
-        __unserialize as unserialize;
-    }
+    use SerializesModels;
 
-    private IOOperation $operation;
-    private string $name;
+    private Model $operation;
 
-    public function __construct(IOOperation $operation, string $name)
+    public function __construct(Model $operation)
     {
-        $this->operation = $operation;
-        $this->name = $name;
-        $this->queue = 'notifications';
+        $this->operation = $operation->load('createdBy.avatar');
+
+        $this->broadcastQueue = 'notifications';
     }
 
     public function broadcastOn()
     {
-        return $this->shouldIncludeCreator()
-            ? [
-                new PrivateChannel('operations'),
-                new PrivateChannel("operations.{$this->operation->created_by}"),
-            ] : new PrivateChannel('operations');
+        $channels = [new PrivateChannel('operations')];
+
+        if ($this->inferiorRole()) {
+            $channels[] = new PrivateChannel(
+                "operations.{$this->operation->created_by}"
+            );
+        }
+
+        return $channels;
     }
 
     public function broadcastWith()
     {
+        $this->operation->load('createdBy.avatar');
+
         return ['operation' => (new IO($this->operation))->resolve()];
     }
 
     public function broadcastAs()
     {
-        return $this->name;
+        return IOTypes::get($this->operation->operationType());
     }
 
-    private function shouldIncludeCreator()
+    private function inferiorRole(): bool
     {
-        return $this->operation->createdBy
-            && ! $this->operation->createdBy->isAdmin()
+        return ! $this->operation->createdBy->isAdmin()
             && ! $this->operation->createdBy->isSupervisor();
-    }
-
-    public function __unserialize($values)
-    {
-        $this->unserialize($values);
-
-        $this->operation->load('createdBy.avatar');
     }
 }

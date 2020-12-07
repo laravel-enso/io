@@ -4,17 +4,10 @@ namespace LaravelEnso\IO\Observers;
 
 use Illuminate\Support\Facades\Event;
 use LaravelEnso\IO\Contracts\IOOperation;
-use LaravelEnso\IO\Enums\IOEvents;
-use LaravelEnso\IO\Enums\IOStatuses;
 use LaravelEnso\IO\Events\IOEvent;
 
 class IOObserver
 {
-    public function creating(IOOperation $operation)
-    {
-        $operation->status = IOStatuses::Waiting;
-    }
-
     public function created(IOOperation $operation)
     {
         $this->dispatch($operation);
@@ -27,10 +20,6 @@ class IOObserver
 
     private function dispatch($operation)
     {
-        if (IOEvents::has($operation->status())) {
-            Event::dispatch(new IOEvent(
-                $operation, IOEvents::get($operation->status())
-            ));
-        }
+        Event::dispatch(new IOEvent($operation));
     }
 }
