@@ -17,7 +17,7 @@ class IOEvent implements ShouldBroadcast
 
     public function __construct(Model $operation)
     {
-        $this->operation = $operation->load('createdBy.avatar');
+        $this->operation = $operation;
 
         $this->broadcastQueue = 'notifications';
     }
@@ -37,7 +37,7 @@ class IOEvent implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        $this->operation->load('createdBy.avatar');
+        $this->operation->load('createdBy.avatar', 'createdBy.person');
 
         return ['operation' => (new IO($this->operation))->resolve()];
     }
