@@ -2,7 +2,6 @@
 
 namespace LaravelEnso\IO\Observers;
 
-use Illuminate\Support\Facades\Event;
 use LaravelEnso\IO\Contracts\IOOperation;
 use LaravelEnso\IO\Events\IOEvent;
 
@@ -20,6 +19,6 @@ class IOObserver
 
     private function dispatch($operation)
     {
-        Event::dispatch(new IOEvent($operation));
+        IOEvent::dispatch($operation);
     }
 }

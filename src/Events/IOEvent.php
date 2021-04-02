@@ -5,6 +5,7 @@ namespace LaravelEnso\IO\Events;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
 use LaravelEnso\IO\Enums\IOTypes;
@@ -12,7 +13,7 @@ use LaravelEnso\IO\Http\Resources\IO;
 
 class IOEvent implements ShouldBroadcast
 {
-    use SerializesModels;
+    use Dispatchable, SerializesModels;
 
     private Model $operation;
 
