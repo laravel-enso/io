@@ -4,8 +4,8 @@ namespace LaravelEnso\IO\Http\Resources;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelEnso\Core\Http\Resources\User;
 use LaravelEnso\Helpers\Services\Decimals;
+use LaravelEnso\Users\Http\Resources\User;
 
 class IO extends JsonResource
 {
