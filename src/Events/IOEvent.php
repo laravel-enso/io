@@ -15,12 +15,8 @@ class IOEvent implements ShouldBroadcast
 {
     use Dispatchable, SerializesModels;
 
-    private Model $operation;
-
-    public function __construct(Model $operation)
+    public function __construct(private Model $operation)
     {
-        $this->operation = $operation;
-
         $this->broadcastQueue = 'notifications';
     }
 

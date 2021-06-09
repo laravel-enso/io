@@ -3,8 +3,8 @@
 namespace LaravelEnso\IO;
 
 use LaravelEnso\Core\Facades\Websockets;
-use LaravelEnso\Core\Models\User;
 use LaravelEnso\Core\WebsocketServiceProvider as CoreServiceProvider;
+use LaravelEnso\Users\Models\User;
 
 class WebsocketServiceProvider extends CoreServiceProvider
 {
