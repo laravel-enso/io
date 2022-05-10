@@ -47,7 +47,6 @@ class IOEvent implements ShouldBroadcast
 
     private function inferiorRole(): bool
     {
-        return ! $this->operation->createdBy->isAdmin()
-            && ! $this->operation->createdBy->isSupervisor();
+        return !$this->operation->createdBy?->isSuperior();
     }
 }
