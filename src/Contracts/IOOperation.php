@@ -15,7 +15,7 @@ interface IOOperation
 
     public function broadcastWith(): array;
 
-    public function createdBy(): Relation;
+    public function createdBy(): ?Relation;
 
     public function createdAt(): Carbon;
 }
