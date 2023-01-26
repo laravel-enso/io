@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
-use LaravelEnso\IO\Enums\IOTypes;
+use LaravelEnso\IO\Enums\IOType;
 use LaravelEnso\IO\Http\Resources\IO;
 
 class IOEvent implements ShouldBroadcast
@@ -42,7 +42,8 @@ class IOEvent implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return App::make(IOTypes::class)::get($this->operation->operationType());
+        // return App::make(IOType::class)::get($this->operation->operationType());
+        return $this->operation->operationType()->name;
     }
 
     private function inferiorRole(): bool
