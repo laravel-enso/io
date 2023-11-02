@@ -12,7 +12,6 @@ class BroadcastServiceProvider extends ServiceProvider
         $himself = fn ($user, $userId) => (int) $user->id === (int) $userId;
         Broadcast::channel('operations.{userId}', $himself);
 
-        $superiorRole = fn ($user) => $user->isAdmin() || $user->isSupervisor();
-        Broadcast::channel('operations', $superiorRole);
+        Broadcast::channel('operations', fn ($user) => $user->isSuperior());
     }
 }
