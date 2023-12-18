@@ -17,7 +17,11 @@ class IOEvent implements ShouldBroadcast
 
     public function __construct(private Model $operation)
     {
-        $this->broadcastQueue = 'notifications';
+    }
+
+    public function broadcastQueue(): string
+    {
+        return 'notifications';
     }
 
     public function broadcastOn()
@@ -47,6 +51,6 @@ class IOEvent implements ShouldBroadcast
 
     private function inferiorRole(): bool
     {
-        return ! $this->operation->createdBy?->isSuperior();
+        return !$this->operation->createdBy?->isSuperior();
     }
 }
