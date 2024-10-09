@@ -29,7 +29,7 @@ class IO extends JsonResource
             return null;
         }
 
-        $elapsed = Carbon::now()->diffInSeconds($this->createdAt());
+        $elapsed = (int) Carbon::now()->diffInSeconds($this->createdAt(), true);
         $total = (int) Decimals::div(100 * $elapsed, $this->progress());
 
         return Carbon::now()->addSeconds($total - $elapsed);
