@@ -1,6 +1,6 @@
 {
     "name": "laravel-enso/io",
-    "description": "IO process monitoring dependency for Laravel-Enso",
+    "description": "IO process monitoring for Laravel Enso",
     "keywords": [
         "laravel",
         "laravel-enso",
