@@ -10,6 +10,6 @@ class EnumServiceProvider extends ServiceProvider
 {
     public $register = [
         'ioStatuses' => IOStatuses::class,
-        'ioTypes' => IOTypes::class,
+        'ioTypes'    => IOTypes::class,
     ];
 }

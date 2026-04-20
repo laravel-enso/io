@@ -13,7 +13,8 @@ use LaravelEnso\IO\Http\Resources\IO;
 
 class IOEvent implements ShouldBroadcast
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(private Model $operation)
     {
@@ -51,6 +52,6 @@ class IOEvent implements ShouldBroadcast
 
     private function inferiorRole(): bool
     {
-        return ! $this->operation->createdBy?->isSuperior();
+        return !$this->operation->createdBy?->isSuperior();
     }
 }

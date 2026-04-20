@@ -13,6 +13,6 @@ class IOTypes extends Enum
     protected static array $data = [
         self::Import => 'import',
         self::Export => 'export',
-        self::Task => 'task',
+        self::Task   => 'task',
     ];
 }

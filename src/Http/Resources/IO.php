@@ -12,20 +12,20 @@ class IO extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->getKey(),
-            'type' => $this->operationType(),
-            'status' => $this->status(),
-            'progress' => $this->progress(),
-            'payload' => $this->broadcastWith(),
-            'createdAt' => $this->createdAt(),
+            'id'           => $this->getKey(),
+            'type'         => $this->operationType(),
+            'status'       => $this->status(),
+            'progress'     => $this->progress(),
+            'payload'      => $this->broadcastWith(),
+            'createdAt'    => $this->createdAt(),
             'estimatedEnd' => $this->estimatedEnd(),
-            'owner' => new User($this->whenLoaded('createdBy')),
+            'owner'        => new User($this->whenLoaded('createdBy')),
         ];
     }
 
     private function estimatedEnd(): ?Carbon
     {
-        if (! $this->progress()) {
+        if (!$this->progress()) {
             return null;
         }
 
