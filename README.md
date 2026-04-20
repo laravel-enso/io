@@ -55,6 +55,10 @@ Required Enso packages:
 - [`laravel-enso/helpers`](https://docs.laravel-enso.com/backend/helpers.html) [↗](https://github.com/laravel-enso/helpers)
 - [`laravel-enso/users`](https://docs.laravel-enso.com/backend/users.html) [↗](https://github.com/laravel-enso/users)
 
+Companion frontend package:
+
+- [`@enso-ui/io`](https://docs.laravel-enso.com/frontend/io.html) [↗](https://github.com/enso-ui/io)
+
 ## Contributions
 
 are welcome. Pull requests are great, but issues are good too.
