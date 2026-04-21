@@ -38,7 +38,7 @@ class IOTest extends TestCase
         ])->firstOrFail();
 
         $this->defaultUser = User::factory()->create([
-            'role_id' => $defaultRole->id,
+            'role_id'   => $defaultRole->id,
             'is_active' => true,
         ]);
     }
