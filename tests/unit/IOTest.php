@@ -12,6 +12,8 @@ use LaravelEnso\IO\Enums\IOTypes;
 use LaravelEnso\IO\Events\IOEvent;
 use LaravelEnso\IO\Observers\IOObserver;
 use LaravelEnso\IO\WebsocketServiceProvider;
+use LaravelEnso\Menus\Models\Menu;
+use LaravelEnso\Permissions\Models\Permission;
 use LaravelEnso\Roles\Enums\Roles;
 use LaravelEnso\Roles\Models\Role;
 use LaravelEnso\Users\Models\User;
@@ -32,13 +34,10 @@ class IOTest extends TestCase
         $this->seed();
         $this->createOperationsTable();
         $this->admin = User::query()->whereRoleId(app(Roles::class)::Admin)->firstOrFail();
-        $defaultRole = Role::query()->whereNotIn('id', [
-            app(Roles::class)::Admin,
-            app(Roles::class)::Supervisor,
-        ])->firstOrFail();
+        $defaultRole = $this->role();
 
         $this->defaultUser = User::factory()->create([
-            'role_id'   => $defaultRole->id,
+            'role_id' => $defaultRole->id,
             'is_active' => true,
         ]);
     }
@@ -117,6 +116,17 @@ class IOTest extends TestCase
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
+    }
+
+    private function role(): Role
+    {
+        $role = Role::factory()->create([
+            'menu_id' => Menu::first(['id'])->id,
+        ]);
+
+        $role->permissions()->sync(Permission::pluck('id'));
+
+        return $role;
     }
 }
 
